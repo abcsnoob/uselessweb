@@ -1,60 +1,99 @@
- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Android 5 Style Dash Loader</title>
-<style>
-  body, html {
-    margin: 0; height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-  }
-
-  svg {
-    width: 80px;
-    height: 80px;
-    animation: rotate 1s linear infinite;
-  }
-
-  circle {
-    fill: none;
-    stroke: #3ddc84;
-    stroke-width: 6;
-    stroke-linecap: round;
-
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: 0;
-    animation: dash 1.5s ease-in-out infinite;
-  }
-
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
+  <meta charset="UTF-8">
+  <title>Đang tải...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
+      color: #333;
     }
-  }
 
-  @keyframes dash {
-    0% {
-      stroke-dasharray: 1, 150;
+    .loader, .project {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .loader {
+      display: flex;
+    }
+
+    svg {
+      width: 80px;
+      height: 80px;
+      animation: rotate 2s linear infinite;
+    }
+
+    circle {
+      fill: none;
+      stroke: #3ddc84;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 90, 150;
       stroke-dashoffset: 0;
+      animation: dash 1.5s ease-in-out infinite;
     }
-    50% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -35;
+
+    @keyframes rotate {
+      100% { transform: rotate(360deg); }
     }
-    100% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -124;
+
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+      }
+      100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+      }
     }
-  }
-</style>
+
+    .text {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .project {
+      font-size: 1.5rem;
+    }
+  </style>
 </head>
 <body>
-  <svg viewBox="0 0 50 50">
-    <circle cx="25" cy="25" r="20"></circle>
-  </svg>
+  <!-- Loading section -->
+  <div class="loader" id="loading">
+    <svg viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20"></circle>
+    </svg>
+    <div class="text">Đang tải...</div>
+  </div>
+
+  <!-- Project section (ẩn lúc đầu) -->
+  <div class="project" id="project">
+    <h1>Dự án Abc's Noob Useless Web</h1>
+    <p>Chào mừng bạn đến với dự án thử nghiệm các trang web vô dụng!</p>
+    <a href="https://github.com/abcsnoob/uselessweb/endless.abcsnoob" target="_blank">Xem trên GitHub</a>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("project").style.display = "flex";
+    }, 15000); // 15 giây
+  </script>
 </body>
 </html>
